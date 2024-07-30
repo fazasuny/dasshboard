@@ -2,11 +2,9 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Load your data
 day_df = pd.read_csv('C:\Fazaaaa\dashboard\day.csv')
 day_df['dteday'] = pd.to_datetime(day_df['dteday'])
 
-# Weather conditions chart
 total_orders_df = day_df.groupby('weathersit').agg({
     "cnt": "sum"
 }).reset_index()
@@ -28,7 +26,6 @@ total_orders_df.rename(columns={
     "percentage": "Persentase Penyewaan"
 }, inplace=True)
 
-# Season chart
 seasonal_orders_df = day_df.groupby('season').agg({
     "cnt": "sum"
 }).reset_index()
@@ -50,7 +47,6 @@ seasonal_orders_df.rename(columns={
 total_rentals = seasonal_orders_df["Total Penyewaan"].sum()
 seasonal_orders_df["Persentase Penyewaan"] = (seasonal_orders_df["Total Penyewaan"] / total_rentals) * 100
 
-# Streamlit app
 st.title("Bike Rentals Dashboard")
 
 st.header("Persentase Penyewaan Sepeda berdasarkan Kondisi Cuaca")
