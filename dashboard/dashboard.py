@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-day_df = pd.read_csv("./day.csv")
+day_df = pd.read_csv("./main-data.csv")
 day_df['dteday'] = pd.to_datetime(day_df['dteday'])
 
 total_orders_df = day_df.groupby('weathersit').agg({
